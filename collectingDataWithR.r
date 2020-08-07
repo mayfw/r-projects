@@ -1,7 +1,9 @@
 install.packages("readr")
 install.packages("readxl")
+install.packages("jsonlite")
 library(readr)
 library(readxl)
+library(jsonlite)
 
 # csv file reading
 file1 <- paste('/Users/maywong/Documents/bootcamp/datasets/csv', '/example.csv',sep="")
@@ -48,3 +50,17 @@ file.exists(nameFile)
 
 nameFile <- '/Users/maywong/Documents/bootcamp/datasets/txt/internet.txt'
 file.exists(nameFile)
+
+# json file reading
+jsondata1 <- read_json(file.choose(), simplifyVector = FALSE)
+print(jsondata1)
+
+jsondata2 <- read_json(file.choose(), simplifyVector = TRUE)
+print(jsondata2)
+
+jsonlist <- list(jsondata1, jsondata2)
+
+write_json(jsonlist, '/Users/maywong/Documents/bootcamp/datasets/json/test.json')
+
+jsondata3 <- read_json('/Users/maywong/Documents/bootcamp/datasets/json/test.json', simplifyVector = TRUE)
+print(jsondata3)
